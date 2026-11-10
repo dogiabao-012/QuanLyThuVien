@@ -1,10 +1,16 @@
 
+package org.example;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Test {
+
     public static void main(String[] args) {
+
         Scanner sc = new Scanner(System.in);
+
+        // Tao danh sach sach bang ArrayList
         ArrayList<Book> danhSachSach = new ArrayList<>();
 
         int luaChon;
@@ -21,30 +27,36 @@ public class Test {
             sc.nextLine();
             switch (luaChon) {
                 case 1:
-                    System.out.print("Nhap ma sach: ");
-                    String maSach = sc.nextLine();
+                    try {
+                        System.out.print("Nhap ma sach: ");
+                        String maSach = sc.nextLine();
 
-                    System.out.print("Nhap tieu de: ");
-                    String tieuDe = sc.nextLine();
+                        System.out.print("Nhap tieu de: ");
+                        String tieuDe = sc.nextLine();
 
-                    System.out.print("Nhap tac gia: ");
-                    String tacGia = sc.nextLine();
+                        System.out.print("Nhap tac gia: ");
+                        String tacGia = sc.nextLine();
 
-                    System.out.print("Nhap nam xuat ban: ");
-                    int namXuatBan = sc.nextInt();
+                        System.out.print("Nhap nam xuat ban: ");
+                        int namXuatBan = sc.nextInt();
 
-                    System.out.print("Nhap so luong: ");
-                    int soLuong = sc.nextInt();
+                        System.out.print("Nhap so luong: ");
+                        int soLuong = sc.nextInt();
+                        sc.nextLine();
 
-                    Book sach = new Book(
-                            maSach, tieuDe, tacGia,
-                            namXuatBan, soLuong
-                    );
+                        Book sach = new Book(
+                                maSach, tieuDe, tacGia,
+                                namXuatBan, soLuong
+                        );
 
-                    danhSachSach.add(sach);
-                    System.out.println("Them sach thanh cong!");
+                        danhSachSach.add(sach);
+
+                        System.out.println("Them sach thanh cong!");
+
+                    } catch (IllegalArgumentException e) {
+                        System.out.println("Loi: " + e.getMessage());
+                    }
                     break;
-
                 case 2:
                     System.out.println("\nDANH SACH SACH TRONG THU VIEN");
 
@@ -56,7 +68,6 @@ public class Test {
                         }
                     }
                     break;
-
                 case 3:
                     System.out.print("Nhap ma sach can tim: ");
                     String maTim = sc.nextLine();
@@ -70,7 +81,6 @@ public class Test {
                             break;
                         }
                     }
-
                     if (!timThay) {
                         System.out.println("Khong tim thay sach!");
                     }
@@ -85,8 +95,10 @@ public class Test {
                     for (int i = 0; i < danhSachSach.size(); i++) {
                         if (danhSachSach.get(i).getMaSach()
                                 .equalsIgnoreCase(maXoa)) {
+
                             danhSachSach.remove(i);
                             daXoa = true;
+
                             System.out.println("Xoa sach thanh cong!");
                             break;
                         }
@@ -98,6 +110,7 @@ public class Test {
                 case 5:
                     System.out.println("Ket thuc chuong trinh!");
                     break;
+
                 default:
                     System.out.println("Lua chon khong hop le!");
             }
@@ -105,4 +118,3 @@ public class Test {
         sc.close();
     }
 }
-

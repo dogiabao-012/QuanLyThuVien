@@ -1,30 +1,23 @@
 
+package org.example;
+import java.time.Year;
 public class Book {
-    // Khai bao cac thuoc tinh
+
     private String maSach;
     private String tieuDe;
     private String tacGia;
     private int namXuatBan;
     private int soLuong;
-
     public Book(String maSach, String tieuDe, String tacGia,
                 int namXuatBan, int soLuong) {
+
         this.maSach = maSach;
         this.tieuDe = tieuDe;
         this.tacGia = tacGia;
-        this.namXuatBan = namXuatBan;
-        this.soLuong = soLuong;
-    }
 
-    public void hienThiThongTin() {
-        System.out.println("Ma sach: " + maSach);
-        System.out.println("Tieu de: " + tieuDe);
-        System.out.println("Tac gia: " + tacGia);
-        System.out.println("Nam xuat ban: " + namXuatBan);
-        System.out.println("So luong: " + soLuong);
-        System.out.println("---------------------------");
+        setNamXuatBan(namXuatBan);
+        setSoLuong(soLuong);
     }
-
     public String getMaSach() {
         return maSach;
     }
@@ -47,12 +40,35 @@ public class Book {
         return namXuatBan;
     }
     public void setNamXuatBan(int namXuatBan) {
-        this.namXuatBan = namXuatBan;
+        int currentYear = Year.now().getValue();
+
+        if (namXuatBan > 0 && namXuatBan <= currentYear) {
+            this.namXuatBan = namXuatBan;
+        } else {
+            throw new IllegalArgumentException(
+                    "Nam xuat ban phai lon hon 0 va khong vuot qua nam hien tai!"
+            );
+        }
     }
+
     public int getSoLuong() {
         return soLuong;
     }
     public void setSoLuong(int soLuong) {
-        this.soLuong = soLuong;
+        if (soLuong >= 0) {
+            this.soLuong = soLuong;
+        } else {
+            throw new IllegalArgumentException(
+                    "So luong sach khong duoc am!"
+            );
+        }
+    }
+    public void hienThiThongTin() {
+        System.out.println("Ma sach: " + maSach);
+        System.out.println("Tieu de: " + tieuDe);
+        System.out.println("Tac gia: " + tacGia);
+        System.out.println("Nam xuat ban: " + namXuatBan);
+        System.out.println("So luong: " + soLuong);
+        System.out.println("---------------------------");
     }
 }
